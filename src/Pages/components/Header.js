@@ -1,30 +1,73 @@
-import { Button, FormControl, FormControlLabel, Grid, IconButton, Switch, Typography } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  FormControlLabel,
+  Grid,
+  IconButton,
+  Switch,
+  Typography,
+} from "@mui/material";
 import React, { useEffect } from "react";
 import { useTheme } from "../../ThemeContext";
-import LightModeIcon from '@mui/icons-material/LightMode';
-import DarkModeIcon from '@mui/icons-material/DarkMode';
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import MenuOpenRoundedIcon from "@mui/icons-material/MenuOpenRounded";
+import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 
 const Header = (props) => {
-  const { currentPage, setCurrentPage } = props;
+  const {
+    currentPage,
+    setCurrentPage,
+    isDrawerOpen,
+    handleToggleDrawer,
+    handleToggleSmDrawer,
+    matchDownSM,
+  } = props;
 
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme);
+    document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
-  console.log('theme : ', theme);
-
   return (
-    <Grid container px={15} py={3} className="container">
-      <Grid item md={6}>
-        {/* <Typography variant="h4" color="success.light"> */}
-        <Typography variant="h4" className="mainColor">
+    <Grid container py={2} className="container">
+      <Grid item xs={matchDownSM ? 2 : 1} pl={1}>
+        {!matchDownSM ? (
+          <IconButton onClick={handleToggleDrawer}>
+            <MenuOpenRoundedIcon
+              fontSize="large"
+              sx={{
+                color: "#fff",
+                transform: !isDrawerOpen ? "rotate(180deg)" : "rotate(0deg)",
+                transition: "all 0.3s ease",
+              }}
+            />
+          </IconButton>
+        ) : (
+          <IconButton onClick={handleToggleSmDrawer}>
+            <MenuRoundedIcon
+              sx={{
+                color: "#fff",
+                transition: "all 0.3s ease",
+              }}
+            />
+          </IconButton>
+        )}
+      </Grid>
+      <Grid item xs={matchDownSM ? 8 : 10} sx={{ display: "flex", alignItems: "center", pl: 3 }}>
+        <Typography variant={matchDownSM ? 'h5' : 'h4'} className="mainColor">
           Jainish Patel
         </Typography>
       </Grid>
-      <Grid
+      <Grid item xs={matchDownSM ? 2 : 1} sx={{ display: "flex", justifyContent: "start" }}>
+        <IconButton onClick={toggleTheme} color="inherit">
+          {theme === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
+        </IconButton>
+      </Grid>
+      {/* <Grid
         item
+        xs={12}
         md={6}
         sx={{ display: "flex", columnGap: 4, justifyContent: "flex-end" }}
       >
@@ -43,13 +86,10 @@ const Header = (props) => {
         <Button color="inherit" onClick={() => setCurrentPage(5)}>
           <Typography variant="h6" color={currentPage === 5 ? 'primary.light' : 'primary'}> Contact </Typography>
         </Button>
-        {/* <FormControl>
-          <FormControlLabel control={<Switch onClick={toggleTheme} />} label="Theme" labelPlacement="end" />
-        </FormControl> */}
-        <IconButton onClick={toggleTheme} color="inherit">
+          <IconButton onClick={toggleTheme} color="inherit">
         {theme === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
       </IconButton>
-      </Grid>
+      </Grid> */}
     </Grid>
   );
 };
