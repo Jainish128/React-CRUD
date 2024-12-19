@@ -31,14 +31,14 @@ const Header = (props) => {
   }, [theme]);
 
   return (
-    <Grid container py={2} className="container">
+    <Grid container py={2} className="header">
       <Grid item xs={matchDownSM ? 2 : 1} pl={1}>
         {!matchDownSM ? (
           <IconButton onClick={handleToggleDrawer}>
             <MenuOpenRoundedIcon
               fontSize="large"
               sx={{
-                color: "#fff",
+                color: "var(--text-color)",
                 transform: !isDrawerOpen ? "rotate(180deg)" : "rotate(0deg)",
                 transition: "all 0.3s ease",
               }}
@@ -48,7 +48,7 @@ const Header = (props) => {
           <IconButton onClick={handleToggleSmDrawer}>
             <MenuRoundedIcon
               sx={{
-                color: "#fff",
+                color: "var(--text-color)",
                 transition: "all 0.3s ease",
               }}
             />
@@ -65,31 +65,6 @@ const Header = (props) => {
           {theme === "dark" ? <LightModeIcon /> : <DarkModeIcon />}
         </IconButton>
       </Grid>
-      {/* <Grid
-        item
-        xs={12}
-        md={6}
-        sx={{ display: "flex", columnGap: 4, justifyContent: "flex-end" }}
-      >
-        <Button color="inherit" onClick={() => setCurrentPage(1)}>
-          <Typography variant="h6" color={currentPage === 1 ? 'primary.light' : 'primary'}> Home </Typography>
-        </Button>
-        <Button color="inherit" onClick={() => setCurrentPage(2)}>
-          <Typography variant="h6" color={currentPage === 2 ? 'primary.light' : 'primary'}> Skills </Typography>
-        </Button>
-        <Button color="inherit" onClick={() => setCurrentPage(3)}>
-          <Typography variant="h6" color={currentPage === 3 ? 'primary.light' : 'primary'}> Projects </Typography>
-        </Button>
-        <Button color="inherit" onClick={() => setCurrentPage(4)}>
-          <Typography variant="h6" color={currentPage === 4 ? 'primary.light' : 'primary'}> About </Typography>
-        </Button>
-        <Button color="inherit" onClick={() => setCurrentPage(5)}>
-          <Typography variant="h6" color={currentPage === 5 ? 'primary.light' : 'primary'}> Contact </Typography>
-        </Button>
-          <IconButton onClick={toggleTheme} color="inherit">
-        {theme === 'dark' ? <LightModeIcon /> : <DarkModeIcon />}
-      </IconButton>
-      </Grid> */}
     </Grid>
   );
 };

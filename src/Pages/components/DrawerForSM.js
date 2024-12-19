@@ -23,8 +23,9 @@ const DrawerForSM = (props) => {
     <Drawer
       open={open}
       anchor="top"
-      onClose={handleToggleSmDrawer}
+      // onClose={handleToggleSmDrawer}
       sx={{ "& .MuiDrawer-paper": { minHeight: 300 } }}
+      onBlur={handleToggleSmDrawer}
     >
       <List>
         {pages?.map((page, index) => {

@@ -23,6 +23,7 @@ import CodeRoundedIcon from "@mui/icons-material/CodeRounded";
 import AccountTreeRoundedIcon from "@mui/icons-material/AccountTreeRounded";
 import InfoRoundedIcon from "@mui/icons-material/InfoRounded";
 import ContactMailRoundedIcon from "@mui/icons-material/ContactMailRounded";
+import Layout from "./Layout";
 
 const HomePage = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -119,7 +120,7 @@ const HomePage = () => {
         ) : (
           <Box
             sx={{
-              width: isDrawerOpen ? "240px" : "90px",
+              width: isDrawerOpen ? 300 : "90px",
               transition: "all 0.3s ease",
             }}
           >
@@ -146,9 +147,12 @@ const HomePage = () => {
             matchDownSM={matchDownSM}
           />
           {/* <Header_2 currentPage={currentPage} setCurrentPage={setCurrentPage} /> */}
-          <Box py={3} px={5}>
+          {/* <Box py={3} px={5}>
             {currPage}
-          </Box>
+          </Box> */}
+          <Layout>
+            {currPage}
+          </Layout>
         </Box>
       </Box>
     </>
